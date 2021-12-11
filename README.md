@@ -15,4 +15,10 @@ $$ |  $$ |$$ |  $$ |$$ |$$   ____|$$ |        $$ |$$\ $$ |  \$$$  /  $$   ____| 
               $$\   $$ |                                                                         
               \$$$$$$  |                                                                         
                \______/                                                                          
+
+
+Compile:
+  gcc -framework Foundation dayXX.m utils.m -o bin/dayXX
 ```
+
+
