@@ -7,3 +7,9 @@ NSString* getInputFromStdin(void)
     NSString *input = [[NSString alloc] initWithData:inputData encoding:NSUTF8StringEncoding];
     return input;
 }
+
+NSArray* getLines(NSString *input) {
+    NSMutableArray* lines = [[input componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
+    [lines removeObject:@""];
+    return lines;
+}
