@@ -8,7 +8,7 @@ int main(int argc, const char * argv[]) {
     NSArray<NSString *> *lines = getLines(input);
     NSMutableCharacterSet *skipChars = [NSMutableCharacterSet characterSetWithCharactersInString:@" ->,"];
 
-    
+
     int floor_hv[MAX_SIZE][MAX_SIZE] = {0};
     int floor_diag[MAX_SIZE][MAX_SIZE] = {0};
     for (int num_line = 0; num_line < [lines count]; num_line++) {
@@ -32,24 +32,20 @@ int main(int argc, const char * argv[]) {
 
         if (y1 == y2) {
             for (long i = MIN(x1, x2); i <= MAX(x1, x2); i++) {
-//                NSLog(@"%d %d %d %d -> %ld %ld", (int)x1, (int)y1, (int)x2, (int)y2, i, y1);
                 floor_hv[i][y1]++;
             }
         } else if (x1 == x2) {
             for (long i = MIN(y1, y2); i <= MAX(y1, y2); i++) {
-//                NSLog(@"%d %d %d %d -> %ld %ld", (int)x1, (int)y1, (int)x2, (int)y2, x1, i);
                 floor_hv[x1][i]++;
             }
         } else {
             if (x1 <= x2 && y1 >= y2) {
                 for (long i = x1, j = y1; i <= x2 && j >= y2; i++, j--) {
-//                    NSLog(@"%d %d %d %d -> %ld %ld", (int)x1, (int)y1, (int)x2, (int)y2, i, j);
                     floor_diag[i][j]++;
                 }
             }
             if (x1 <= x2 && y1 <= y2) {
                 for (long i = x1, j = y1; i <= x2 && j <= y2; i++, j++) {
-//                    NSLog(@"%d %d %d %d -> %ld %ld", (int)x1, (int)y1, (int)x2, (int)y2, i, j);
                     floor_diag[i][j]++;
                 }
             }
