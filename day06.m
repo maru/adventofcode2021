@@ -28,14 +28,14 @@ int main(int argc, const char * argv[]) {
     NSScanner *scanner = [[NSScanner alloc] initWithString:lines[0]];
     [scanner setCharactersToBeSkipped:skipChars];
     NSInteger day;
-    
+
     long fishes[MAX_SIZE] = {0};
     while ([scanner scanInteger:&day]) {
         fishes[day]++;
     }
-    
+
     NSLog(@"(1) answer: %ld", getNumFishes(fishes, 80));
-    NSLog(@"(1) answer: %ld", getNumFishes(fishes, 256-80));
+    NSLog(@"(2) answer: %ld", getNumFishes(fishes, 256-80));
 
     return 0;
 }
