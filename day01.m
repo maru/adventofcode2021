@@ -2,7 +2,7 @@
 
 int main(int argc, const char * argv[]) {
 
-    NSString *input = getInputFromStdin();
+    NSString *input = readInputFromStdin();
 
     NSInteger depth = 0;
     NSInteger inc = 0, win3_inc = 0;

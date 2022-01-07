@@ -62,8 +62,8 @@ long findBasin(int cave[100][100], int i, int j, NSInteger cave_height, NSIntege
 }
 
 int main(int argc, const char * argv[]) {
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
     NSInteger cave_height = [lines count];
     NSInteger cave_width = lines[0].length;
 

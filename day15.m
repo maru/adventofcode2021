@@ -117,8 +117,8 @@ long findShortestPath(NSUInteger cave[MAX_SIZE][MAX_SIZE], NSUInteger risk[MAX_S
 }
 
 int main(int argc, const char * argv[]) {
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
 
     NSUInteger h = lines.count, w = lines[0].length;
     NSUInteger cave[MAX_SIZE][MAX_SIZE], risk[MAX_SIZE][MAX_SIZE];

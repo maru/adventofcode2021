@@ -1,6 +1,6 @@
 #import "utils.h"
 
-NSString* getInputFromStdin(void)
+NSString* readInputFromStdin(void)
 {
     NSFileHandle *fp = [NSFileHandle fileHandleWithStandardInput];
     NSData *inputData = [NSData dataWithData:[fp readDataToEndOfFile]];
@@ -8,7 +8,7 @@ NSString* getInputFromStdin(void)
     return input;
 }
 
-NSArray* getLines(NSString *input) {
+NSArray* parseLines(NSString *input) {
     NSMutableArray* lines = [[input componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
     [lines removeObject:@""];
     return lines;

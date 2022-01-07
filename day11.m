@@ -103,8 +103,8 @@ long doAllOctopusFlash(int octopus[GRID_SIZE][GRID_SIZE]) {
 
 
 int main(int argc, const char * argv[]) {
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
 
     int octopus[GRID_SIZE][GRID_SIZE] = {0};
     for (int i = 0; i < GRID_SIZE; i++) {

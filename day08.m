@@ -60,8 +60,8 @@ long findPermutation(NSArray *signals, char c, char res[128], bool used[128]) {
 }
 
 int main(int argc, const char * argv[]) {
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
 
     long count_unique = 0;
     long sum = 0;

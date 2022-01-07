@@ -3,8 +3,8 @@
 
 @import Foundation;
 
-NSString* getInputFromStdin(void);
+NSString* readInputFromStdin(void);
 
-NSArray* getLines(NSString *input);
+NSArray* parseLines(NSString *input);
 
 #endif /* util_h */

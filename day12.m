@@ -37,8 +37,8 @@ long countAllPaths(int node_id, int adj_matrix[MAX_SIZE][MAX_SIZE], int visited[
 }
 
 int main(int argc, const char * argv[]) {
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
 
     int node_id = 0;
     NSMutableDictionary *node_to_id = [NSMutableDictionary dictionary];

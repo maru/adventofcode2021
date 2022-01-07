@@ -36,8 +36,8 @@ NSInteger getGeneratorRating(NSArray<NSString *> *lines, char maxc, char minc) {
 
 int main(int argc, const char * argv[]) {
 
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
 
     NSInteger gamma = 0, epsilon = 0;
     NSInteger oxygen = 0, co2 = 0;

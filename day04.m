@@ -96,7 +96,7 @@ typedef enum WinPositionType : NSUInteger {
 NSInteger playBingo(NSArray<NSString *> *lines, WinPositionType winPosition) {
     NSInteger num_lines = [lines count];
     NSMutableArray *boards = [[NSMutableArray alloc] init];
-    // getLines skips blank lines, so start from lines[1]
+    // parseLines skips blank lines, so start from lines[1]
     for (int first = 1; first < num_lines; first += MAX_BOARD_SIZE) {
         Board *board = [[Board alloc] init];
         NSInteger number;
@@ -135,8 +135,8 @@ NSInteger playBingo(NSArray<NSString *> *lines, WinPositionType winPosition) {
 }
 
 int main(int argc, const char * argv[]) {
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
 
     NSLog(@"(1) answer: %ld", (long) playBingo(lines, kWinPositionFirst));
     NSLog(@"(2) answer: %ld", (long) playBingo(lines, kWinPositionLast));

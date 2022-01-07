@@ -38,8 +38,8 @@ NSUInteger getDiffMinMax(NSUInteger *count_c) {
 }
 
 int main(int argc, const char * argv[]) {
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
 
     NSMutableDictionary *rules = [NSMutableDictionary dictionary];
     NSMutableCharacterSet *skipChars = [NSMutableCharacterSet characterSetWithCharactersInString:@" "];

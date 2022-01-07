@@ -38,8 +38,8 @@ long getNeedFuelStepRate(NSArray *nums) {
 }
 
 int main(int argc, const char * argv[]) {
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
     NSMutableCharacterSet *skipChars = [NSMutableCharacterSet characterSetWithCharactersInString:@","];
 
     NSScanner *scanner = [[NSScanner alloc] initWithString:lines[0]];

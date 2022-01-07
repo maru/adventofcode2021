@@ -167,8 +167,8 @@ long parsePacket(PacketReader *reader, long *sum_versions, int tab) {
 }
 
 int main(int argc, const char * argv[]) {
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
     PacketReader *reader = [[PacketReader alloc] initWithBuffer:[lines[0] UTF8String] withLen:[lines[0] length]];
     long sum_versions = 0;
     long n = parsePacket(reader, &sum_versions, 0);

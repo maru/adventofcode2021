@@ -2,7 +2,7 @@
 
 int main(int argc, const char * argv[]) {
 
-    NSString *input = getInputFromStdin();
+    NSString *input = readInputFromStdin();
 
     NSScanner *parser = [[NSScanner alloc] initWithString:input];
     NSInteger units = 0;

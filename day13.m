@@ -49,8 +49,8 @@ void fold(char paper[MAX_SIZE][MAX_SIZE], char direction, int num_line, int *max
 }
 
 int main(int argc, const char * argv[]) {
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
 
     char paper[MAX_SIZE][MAX_SIZE] = {0};
     int max_x = 0, max_y = 0;

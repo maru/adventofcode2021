@@ -1,8 +1,8 @@
 #import "utils.h"
 
 int main(int argc, const char * argv[]) {
-    NSString *input = getInputFromStdin();
-    NSArray<NSString *> *lines = getLines(input);
+    NSString *input = readInputFromStdin();
+    NSArray<NSString *> *lines = parseLines(input);
 
     long sum_errors = 0;
     NSMutableArray *scores = [[NSMutableArray alloc] init];
