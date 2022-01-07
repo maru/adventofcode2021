@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 int main(int argc, const char * argv[]) {
@@ -8,7 +7,7 @@ int main(int argc, const char * argv[]) {
     NSScanner *parser = [[NSScanner alloc] initWithString:input];
     NSInteger units = 0;
     NSString *cmd;
-   
+
     NSInteger hpos1 = 0, depth1 = 0, hpos2 = 0, depth2 = 0, aim = 0;
     while ([parser scanUpToCharactersFromSet: [NSCharacterSet whitespaceCharacterSet] intoString: &cmd]) {
         [parser scanInteger:&units];

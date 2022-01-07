@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 const int MAX_SIZE = 1000;

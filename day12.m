@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 const int MAX_SIZE = 30;
@@ -27,7 +26,7 @@ long countAllPaths(int node_id, int adj_matrix[MAX_SIZE][MAX_SIZE], int visited[
                 if ((visited[i] == 2)|| (visited[i] == 1 && did_visit_twice)) continue;
             }
         }
-        
+
         visited[i]++;
         if (small_cave[i] && visited[i] == 2) did_visit_twice = true;
         count += countAllPaths(i, adj_matrix, visited, node_to_id, small_cave, max_visit, did_visit_twice);

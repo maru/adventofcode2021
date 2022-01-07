@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 long getNeedFuelConstantRate(NSArray *nums) {
@@ -33,7 +32,7 @@ long getNeedFuelStepRate(NSArray *nums) {
     for (NSNumber *pos in nums) {
         best_pos_tmp += [pos doubleValue];
     }
-    
+
     bestPos = lround(best_pos_tmp / count);
     return MIN(calcFuel(nums, bestPos), calcFuel(nums, bestPos - 1));
 }
@@ -52,7 +51,7 @@ int main(int argc, const char * argv[]) {
         [nums addObject:@(pos)];
     }
     NSArray *sorted = [nums sortedArrayUsingSelector: @selector(compare:)];
-    
+
     NSLog(@"(1) answer: %ld", getNeedFuelConstantRate(sorted));
     NSLog(@"(2) answer: %ld", getNeedFuelStepRate(sorted));
     return 0;

@@ -1,10 +1,9 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 int main(int argc, const char * argv[]) {
     NSString *input = getInputFromStdin();
     NSArray<NSString *> *lines = getLines(input);
-    
+
     long sum_errors = 0;
     NSMutableArray *scores = [[NSMutableArray alloc] init];
     for (NSString *line in lines) {
@@ -20,13 +19,13 @@ int main(int argc, const char * argv[]) {
                     NSCAssert([st count] > 0, @"No chars in stack");
                     prev_c = [[st objectAtIndex:([st count] - 1)] charValue];
                     [st removeLastObject];
-                    
+
                     if ((c == ')' && prev_c == '(') ||
                         (c == ']' && prev_c == '[') ||
                         (c == '}' && prev_c == '{') ||
                         (c == '>' && prev_c == '<'))
                         continue;
-                    
+
                     // Wrong closing bracket
                     stop_processing = true;
                     if (c == ')') sum_errors += 3;

@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 const NSUInteger MAX_SIZE = 2000;

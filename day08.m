@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 NSString *signals_orig[10] = { @"abcefg", @"cf", @"acdeg", @"acdfg", @"bcdf", @"abdfg", @"abdefg", @"acf", @"abcdefg", @"abcdfg" };
@@ -48,7 +47,7 @@ long findPermutation(NSArray *signals, char c, char res[128], bool used[128]) {
     if (c > 'g') {
         return getNumber(signals, res);
     }
-    
+
     for (char d = 'a'; d <= 'g'; d++) {
         if (used[d]) continue;
         used[d] = true;
@@ -72,7 +71,7 @@ int main(int argc, const char * argv[]) {
             NSUInteger len = [signals[i] length];
             if (len == 2 || len == 3 || len == 4 || len == 7) count_unique++;
         }
-        
+
         char res[128] = {0};
         bool used[128] = {0};
         // This solution is not the most efficient, but given the input size and the number of signals, it is fast enough :)
@@ -80,7 +79,7 @@ int main(int argc, const char * argv[]) {
         NSCAssert(number != -1, @"not found");
         sum += number;
     }
-    
+
     NSLog(@"(1) answer: %ld", count_unique);
     NSLog(@"(2) answer: %ld", sum);
     return 0;

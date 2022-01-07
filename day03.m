@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 
@@ -41,10 +40,10 @@ int main(int argc, const char * argv[]) {
     NSArray<NSString *> *lines = getLines(input);
     NSInteger num_lines = [lines count];
     NSInteger len = lines[0].length;
-    
+
     NSInteger gamma = 0, epsilon = 0;
     NSInteger oxygen = 0, co2 = 0;
-    
+
     // (1)
     for (int j = 0; j < len; j++) {
         int count = 0;

@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 @interface Position : NSObject {
@@ -89,7 +88,7 @@ int main(int argc, const char * argv[]) {
             [basins addObject:@(size_basin)];
         }
     }
-    
+
     NSArray *sorted = [basins sortedArrayUsingSelector: @selector(compare:)];
     long largest_basins = 1;
     for (long i = 0; i < 3; i++) {
@@ -97,7 +96,7 @@ int main(int argc, const char * argv[]) {
         NSCAssert(idx >= 0, @"out of bounds");
         largest_basins *= [[sorted objectAtIndex:idx] integerValue];
     }
-    
+
     NSLog(@"(1) answer: %ld", sum_risk);
     NSLog(@"(2) answer: %ld", largest_basins);
     return 0;

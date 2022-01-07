@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 const int GRID_SIZE = 10;
@@ -43,7 +42,7 @@ const int GRID_SIZE = 10;
 }
 -(id)pop {
     if ([self is_empty]) return nil;
-    
+
     id o = [queue objectAtIndex:0];
     [queue removeObjectAtIndex:0];
     return o;

@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 const NSUInteger MAX_SIZE = 500;
@@ -55,7 +54,7 @@ static CFComparisonResult _compare(const void *ptr1, const void *ptr2, void *con
 {
     Position *a = (__bridge Position *)ptr1;
     Position *b = (__bridge Position *)ptr2;
-    
+
     return (CFComparisonResult)(b.risk < a.risk);
 }
 
@@ -63,12 +62,12 @@ static CFComparisonResult _compare(const void *ptr1, const void *ptr2, void *con
     if ((self = [super init])) {
         CFBinaryHeapCallBacks callbacks;
         callbacks.version = 0;
-        
+
         callbacks.retain = _retain;
         callbacks.release = _release;
         callbacks.copyDescription = NULL;
         callbacks.compare = _compare;
-        
+
         _heap = CFBinaryHeapCreate(kCFAllocatorDefault, 0, &callbacks, NULL);
         _count = 0;
     }
@@ -120,7 +119,7 @@ long findShortestPath(NSUInteger cave[MAX_SIZE][MAX_SIZE], NSUInteger risk[MAX_S
 int main(int argc, const char * argv[]) {
     NSString *input = getInputFromStdin();
     NSArray<NSString *> *lines = getLines(input);
-    
+
     NSUInteger h = lines.count, w = lines[0].length;
     NSUInteger cave[MAX_SIZE][MAX_SIZE], risk[MAX_SIZE][MAX_SIZE];
     for (NSUInteger i = 0; i < h; i++) {

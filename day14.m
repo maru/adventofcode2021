@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "utils.h"
 
 const NSUInteger MAX_SIZE_PAIRS = 1ULL << 16;
@@ -41,14 +40,14 @@ NSUInteger getDiffMinMax(NSUInteger *count_c) {
 int main(int argc, const char * argv[]) {
     NSString *input = getInputFromStdin();
     NSArray<NSString *> *lines = getLines(input);
-    
+
     NSMutableDictionary *rules = [NSMutableDictionary dictionary];
     NSMutableCharacterSet *skipChars = [NSMutableCharacterSet characterSetWithCharactersInString:@" "];
     for (int i = 1; i < lines.count; i++) {
         NSArray *tokens = [lines[i] componentsSeparatedByCharactersInSet:skipChars];
         [rules setObject:tokens[2] forKey:tokens[0]];
     }
-    
+
     NSUInteger count_c[MAX_SIZE_COUNT];
     memset(count_c, '\0', MAX_SIZE_COUNT*sizeof(NSUInteger));
     int len = (int) lines[0].length;
@@ -56,7 +55,7 @@ int main(int argc, const char * argv[]) {
         char c = [lines[0] characterAtIndex:i];
         count_c[c]++;
     }
-    
+
     // The order in which we process pairs is not relevant, so we can just save the number of each one.
     // This helps us to avoid working with the resulting string, making O(len string) >> 2**32 into O(pairs) < 2**16
     NSUInteger pairs[MAX_SIZE_PAIRS], tmp[MAX_SIZE_PAIRS];
@@ -65,12 +64,12 @@ int main(int argc, const char * argv[]) {
         NSUInteger p = getPair([lines[0] characterAtIndex:i], [lines[0] characterAtIndex:i+1]);
         pairs[p]++;
     }
-    
+
     for (int step = 0; step < 10; step++) {
         doStep(pairs, tmp, count_c, rules);
     }
     NSLog(@"(1) answer: %ld", getDiffMinMax(count_c));
-    
+
     for (int step = 10; step < 40; step++) {
         doStep(pairs, tmp, count_c, rules);
     }
