@@ -18,7 +18,7 @@ $$ |  $$ |$$ |  $$ |$$ |$$   ____|$$ |        $$ |$$\ $$ |  \$$$  /  $$   ____| 
 
 
 Compile:
-  llvm-gcc -fmodules Foundation dayXX.m utils.m -o bin/dayXX
+  llvm-gcc -fmodules dayXX.m utils.m -o bin/dayXX
 ```
 
 
