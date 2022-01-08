@@ -2,11 +2,10 @@
 
 int MAX_BOARD_SIZE = 5;
 
-typedef enum WinPositionType : NSUInteger {
+typedef NS_ENUM(NSUInteger, WinPositionType) {
     kWinPositionFirst,
     kWinPositionLast,
-} WinPositionType;
-
+};
 
 @interface BoardNumber : NSObject {
     int row, col;

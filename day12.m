@@ -1,10 +1,11 @@
 #import "utils.h"
 
 const int MAX_SIZE = 30;
-typedef enum {
-    kVisitMaxOne = 1,
-    kVisitMaxTwice = 2
-} NumberMaxVisitType;
+
+typedef NS_ENUM(NSUInteger, NumberMaxVisitType) {
+    kVisitMaxOne,
+    kVisitMaxTwice
+};
 
 int getNodeId(NSDictionary *node_to_id, id key) {
     return (int) [[node_to_id objectForKey:key] integerValue];
