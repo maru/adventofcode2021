@@ -10,7 +10,7 @@ const NSUInteger MAX_SIZE = 500;
 @property(nonatomic, readwrite) int row;
 @property(nonatomic, readwrite) int col;
 
--(id)initWithRowCol:(int)r andCol:(int)c andRisk:(NSUInteger)rk;
+- (id)initWithRowCol:(int)r andCol:(int)c andRisk:(NSUInteger)rk;
 @end
 
 @implementation Position
@@ -18,7 +18,7 @@ const NSUInteger MAX_SIZE = 500;
 @synthesize row;
 @synthesize col;
 
--(id)initWithRowCol:(int)r andCol:(int)c andRisk:(NSUInteger)rk {
+- (id)initWithRowCol:(int)r andCol:(int)c andRisk:(NSUInteger)rk {
     row = r;
     col = c;
     risk = rk;

@@ -8,14 +8,14 @@ const int GRID_SIZE = 10;
 @property(nonatomic, readwrite) int row;
 @property(nonatomic, readwrite) int col;
 
--(id)initWithRowCol:(int)r andCol:(int)c;
+- (id)initWithRowCol:(int)r andCol:(int)c;
 @end
 
 @implementation Position
 @synthesize row;
 @synthesize col;
 
--(id)initWithRowCol:(int)r andCol:(int)c {
+- (id)initWithRowCol:(int)r andCol:(int)c {
     row = r;
     col = c;
     return self;
@@ -27,27 +27,27 @@ const int GRID_SIZE = 10;
     NSMutableArray<ObjectType> *queue;
 }
 
--(void)push:(ObjectType)v;
--(ObjectType)pop;
--(BOOL)is_empty;
+- (void)push:(ObjectType)v;
+- (ObjectType)pop;
+- (BOOL)is_empty;
 @end
 
 @implementation Queue
--(instancetype)init {
+- (instancetype)init {
     queue = [NSMutableArray array];
     return self;
 }
--(void)push:(id)anObject {
+- (void)push:(id)anObject {
     [queue addObject:anObject];
 }
--(id)pop {
+- (id)pop {
     if ([self is_empty]) return nil;
 
     id o = [queue objectAtIndex:0];
     [queue removeObjectAtIndex:0];
     return o;
 }
--(BOOL)is_empty {
+- (BOOL)is_empty {
     return [queue count] == 0;
 }
 

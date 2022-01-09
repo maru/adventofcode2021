@@ -13,14 +13,14 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
 @property(nonatomic, readwrite) int row;
 @property(nonatomic, readwrite) int col;
 
--(id)initWithRowCol:(int)r andCol:(int)c;
+- (id)initWithRowCol:(int)r andCol:(int)c;
 @end
 
 @implementation BoardNumber
 @synthesize row;
 @synthesize col;
 
--(id)initWithRowCol:(int)r andCol:(int)c {
+- (id)initWithRowCol:(int)r andCol:(int)c {
     row = r;
     col = c;
     return self;
@@ -37,17 +37,17 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
 }
 @property(nonatomic, readwrite) NSInteger sumUnmarked;
 
--(void)addNumber:(NSInteger)number withPosition:(BoardNumber*)position;
--(BOOL) markNumber: (NSInteger)number;
--(BOOL) isWinner;
--(void)print;
+- (void)addNumber:(NSInteger)number withPosition:(BoardNumber*)position;
+- (BOOL)markNumber: (NSInteger)number;
+- (BOOL)isWinner;
+- (void)print;
 
 @end
 
 @implementation Board
 @synthesize sumUnmarked;
 
--(id)init {
+- (id)init {
     numbers = [NSMutableDictionary dictionary];
     sumUnmarked = 0;
     didWin = NO;
@@ -61,14 +61,14 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
     return self;
 }
 
--(void)print {
+- (void)print {
     for (NSNumber *key in numbers) {
         BoardNumber*position = numbers[key];
         NSLog(@"%d = (%d, %d)", (int)[key integerValue], position.row, position.col);
     }
 }
 
--(void)addNumber:(NSInteger)number withPosition:(BoardNumber*)position {
+- (void)addNumber:(NSInteger)number withPosition:(BoardNumber*)position {
     [numbers setObject:position forKey:@(number)];
 }
 
@@ -84,7 +84,7 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
     return YES;
 }
 
--(BOOL) isWinner {
+- (BOOL)isWinner {
     return didWin;
 }
 

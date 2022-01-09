@@ -6,14 +6,14 @@
 @property(nonatomic, readwrite) int row;
 @property(nonatomic, readwrite) int col;
 
--(id)initWithRowCol:(int)r andCol:(int)c;
+- (id)initWithRowCol:(int)r andCol:(int)c;
 @end
 
 @implementation Position
 @synthesize row;
 @synthesize col;
 
--(id)initWithRowCol:(int)r andCol:(int)c {
+- (id)initWithRowCol:(int)r andCol:(int)c {
     row = r;
     col = c;
     return self;
