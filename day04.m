@@ -13,16 +13,19 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
 @property(nonatomic, readwrite) int row;
 @property(nonatomic, readwrite) int col;
 
-- (id)initWithRowCol:(int)r andCol:(int)c;
+- (instancetype)initWithRow:(int)r col:(int)c;
 @end
 
 @implementation BoardNumber
 @synthesize row;
 @synthesize col;
 
-- (id)initWithRowCol:(int)r andCol:(int)c {
-    row = r;
-    col = c;
+- (instancetype)initWithRow:(int)r col:(int)c {
+    self = [super init];
+    if (self) {
+        row = r;
+        col = c;
+    }
     return self;
 }
 
@@ -47,16 +50,19 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
 @implementation Board
 @synthesize sumUnmarked;
 
-- (id)init {
-    numbers = [NSMutableDictionary dictionary];
-    sumUnmarked = 0;
-    didWin = NO;
-    rows = [NSMutableArray array];
-    cols = [NSMutableArray array];
-    boardSize = MAX_BOARD_SIZE;
-    for (int i = 0; i < boardSize; i++) {
-        [rows addObject:@(boardSize)];
-        [cols addObject:@(boardSize)];
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        numbers = [NSMutableDictionary dictionary];
+        sumUnmarked = 0;
+        didWin = NO;
+        rows = [NSMutableArray array];
+        cols = [NSMutableArray array];
+        boardSize = MAX_BOARD_SIZE;
+        for (int i = 0; i < boardSize; i++) {
+            [rows addObject:@(boardSize)];
+            [cols addObject:@(boardSize)];
+        }
     }
     return self;
 }
@@ -105,7 +111,7 @@ NSInteger playBingo(NSArray<NSString *> *lines, WinPositionType winPosition) {
             int col = 0;
             while ([scanner scanInteger:&number]) {
                 board.sumUnmarked += number;
-                BoardNumber *pos = [[BoardNumber alloc] initWithRowCol:row andCol:col++];
+                BoardNumber *pos = [[BoardNumber alloc] initWithRow:row col:col++];
                 [board addNumber:number withPosition:pos];
             }
         }

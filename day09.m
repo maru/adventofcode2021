@@ -6,16 +6,19 @@
 @property(nonatomic, readwrite) int row;
 @property(nonatomic, readwrite) int col;
 
-- (id)initWithRowCol:(int)r andCol:(int)c;
+- (instancetype)initWithRow:(int)r col:(int)c;
 @end
 
 @implementation Position
 @synthesize row;
 @synthesize col;
 
-- (id)initWithRowCol:(int)r andCol:(int)c {
-    row = r;
-    col = c;
+- (instancetype)initWithRow:(int)r col:(int)c {
+    self = [super init];
+    if (self) {
+        row = r;
+        col = c;
+    }
     return self;
 }
 
@@ -36,7 +39,7 @@ BOOL isLowPoint(long h, int cave[100][100], int i, int j, NSInteger cave_height,
 
 void addValueIfValid(int cave[100][100], int val, int i, int j, NSInteger cave_height, NSInteger cave_width, NSMutableArray *queue, BOOL visited[100][100]) {
     int a = getValue(cave, i, j, cave_height, cave_width);
-    if (a < 9 && val < a && !visited[i][j]) [queue addObject:[[Position alloc] initWithRowCol:i andCol:j]];
+    if (a < 9 && val < a && !visited[i][j]) [queue addObject:[[Position alloc] initWithRow:i col:j]];
 }
 
 long findBasin(int cave[100][100], int i, int j, NSInteger cave_height, NSInteger cave_width) {
@@ -44,7 +47,7 @@ long findBasin(int cave[100][100], int i, int j, NSInteger cave_height, NSIntege
     BOOL visited[100][100] = {0};
 
     NSMutableArray *queue = [NSMutableArray array];
-    [queue addObject:[[Position alloc] initWithRowCol:i andCol:j]];
+    [queue addObject:[[Position alloc] initWithRow:i col:j]];
     while ([queue count] > 0) {
         Position *pos = [queue objectAtIndex:0];
         [queue removeObjectAtIndex:0];

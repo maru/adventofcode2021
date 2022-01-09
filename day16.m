@@ -17,7 +17,7 @@ unsigned char hex(unsigned char c) {
     unsigned int nbit;
 }
 
-- (id)initWithBuffer:(const char *)input withLen:(size_t)input_size;
+- (instancetype)initWithBuffer:(const char *)input len:(size_t)input_size;
 - (unsigned int)get:(size_t)bits;
 - (size_t)bits_left;
 - (size_t)bits_read;
@@ -27,15 +27,18 @@ unsigned char hex(unsigned char c) {
 @implementation PacketReader
 
 
-- (id)initWithBuffer:(const char *)input withLen:(size_t)input_size {
-    len = input_size/2;
-    buffer = (unsigned char *)malloc(len);
-    for (int i = 0; i < len; i++) {
-        buffer[i] = (hex(input[2*i]) << 4) + hex(input[2*i + 1]);
+- (instancetype)initWithBuffer:(const char *)input len:(size_t)input_size {
+    self = [super init];
+    if (self) {
+        len = input_size/2;
+        buffer = (unsigned char *)malloc(len);
+        for (int i = 0; i < len; i++) {
+            buffer[i] = (hex(input[2*i]) << 4) + hex(input[2*i + 1]);
+        }
+        offset = 0;
+        mask = 0x80;
+        nbit = 7;
     }
-    offset = 0;
-    mask = 0x80;
-    nbit = 7;
     return self;
 }
 
@@ -169,7 +172,7 @@ long parsePacket(PacketReader *reader, long *sum_versions, int tab) {
 int main(int argc, const char * argv[]) {
     NSString *input = readInputFromStdin();
     NSArray<NSString *> *lines = parseLines(input);
-    PacketReader *reader = [[PacketReader alloc] initWithBuffer:[lines[0] UTF8String] withLen:[lines[0] length]];
+    PacketReader *reader = [[PacketReader alloc] initWithBuffer:[lines[0] UTF8String] len:[lines[0] length]];
     long sum_versions = 0;
     long n = parsePacket(reader, &sum_versions, 0);
     NSLog(@"(1) answer: %ld", sum_versions);

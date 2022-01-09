@@ -10,7 +10,7 @@ const NSUInteger MAX_SIZE = 500;
 @property(nonatomic, readwrite) int row;
 @property(nonatomic, readwrite) int col;
 
-- (id)initWithRowCol:(int)r andCol:(int)c andRisk:(NSUInteger)rk;
+- (instancetype)initWithRow:(int)r col:(int)c risk:(NSUInteger)rk;
 @end
 
 @implementation Position
@@ -18,10 +18,13 @@ const NSUInteger MAX_SIZE = 500;
 @synthesize row;
 @synthesize col;
 
-- (id)initWithRowCol:(int)r andCol:(int)c andRisk:(NSUInteger)rk {
-    row = r;
-    col = c;
-    risk = rk;
+- (instancetype)initWithRow:(int)r col:(int)c risk:(NSUInteger)rk {
+    self = [super init];
+    if (self) {
+        row = r;
+        col = c;
+        risk = rk;
+    }
     return self;
 }
 
@@ -110,7 +113,7 @@ long findShortestPath(NSUInteger cave[MAX_SIZE][MAX_SIZE], NSUInteger risk[MAX_S
             int c = p.col + offsets[k][1];
             if (!(0 <= r && r < h && 0 <= c && c < w)) continue;
             if (risk[r][c] <= p.risk + cave[r][c]) continue;
-            [queue push:[[Position alloc] initWithRowCol:r andCol:c andRisk:(p.risk + cave[r][c])]];
+            [queue push:[[Position alloc] initWithRow:r col:c risk:(p.risk + cave[r][c])]];
         }
     }
     return risk[h-1][w-1];
@@ -128,8 +131,8 @@ int main(int argc, const char * argv[]) {
             risk[i][j] = 20000;
         }
     }
-    Position *start = [[Position alloc] initWithRowCol:0 andCol:0 andRisk:0];
-    Position *end = [[Position alloc] initWithRowCol:(int)h-1 andCol:(int)w-1 andRisk:0];
+    Position *start = [[Position alloc] initWithRow:0 col:0 risk:0];
+    Position *end = [[Position alloc] initWithRow:(int)h-1 col:(int)w-1 risk:0];
     NSLog(@"(1) answer: %ld", findShortestPath(cave, risk, start, end, h, w));
 
     // 5x larger

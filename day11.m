@@ -8,16 +8,19 @@ const int GRID_SIZE = 10;
 @property(nonatomic, readwrite) int row;
 @property(nonatomic, readwrite) int col;
 
-- (id)initWithRowCol:(int)r andCol:(int)c;
+- (instancetype)initWithRow:(int)r col:(int)c;
 @end
 
 @implementation Position
 @synthesize row;
 @synthesize col;
 
-- (id)initWithRowCol:(int)r andCol:(int)c {
-    row = r;
-    col = c;
+- (instancetype)initWithRow:(int)r col:(int)c {
+    self = [super init];
+    if (self) {
+        row = r;
+        col = c;
+    }
     return self;
 }
 
@@ -34,7 +37,10 @@ const int GRID_SIZE = 10;
 
 @implementation Queue
 - (instancetype)init {
-    queue = [NSMutableArray array];
+    self = [super init];
+    if (self) {
+        queue = [NSMutableArray array];
+    }
     return self;
 }
 - (void)push:(id)anObject {
@@ -69,7 +75,7 @@ long doStep(int octopus[GRID_SIZE][GRID_SIZE]) {
         for (int j = 0; j < GRID_SIZE; j++) {
             octopus[i][j] = (octopus[i][j] + 1) % 10;
             if (octopus[i][j] == 0) {
-                [queue push:[[Position alloc] initWithRowCol:i andCol:j]];
+                [queue push:[[Position alloc] initWithRow:i col:j]];
             }
         }
     }
@@ -85,7 +91,7 @@ long doStep(int octopus[GRID_SIZE][GRID_SIZE]) {
             if (!(0 <= row && row < GRID_SIZE && 0 <= col && col < GRID_SIZE && octopus[row][col] > 0)) continue;
             octopus[row][col] = (octopus[row][col] + 1) % 10;
             if (octopus[row][col] == 0) {
-                [queue push:[[Position alloc] initWithRowCol:row andCol:col]];
+                [queue push:[[Position alloc] initWithRow:row col:col]];
             }
         }
     }
