@@ -32,14 +32,14 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
     NSMutableDictionary *numbers;
     NSInteger sumUnmarked;
     NSMutableArray *rows, *cols;
-    bool didWin;
+    BOOL didWin;
     int boardSize;
 }
 @property(nonatomic, readwrite) NSInteger sumUnmarked;
 
 -(void)addNumber:(NSInteger)number withPosition:(BoardNumber*)position;
--(bool) markNumber: (NSInteger)number;
--(bool) isWinner;
+-(BOOL) markNumber: (NSInteger)number;
+-(BOOL) isWinner;
 -(void)print;
 
 @end
@@ -50,7 +50,7 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
 -(id)init {
     numbers = [NSMutableDictionary dictionary];
     sumUnmarked = 0;
-    didWin = false;
+    didWin = NO;
     rows = [[NSMutableArray alloc] init];
     cols = [[NSMutableArray alloc] init];
     boardSize = MAX_BOARD_SIZE;
@@ -72,19 +72,19 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
     [numbers setObject:position forKey:@(number)];
 }
 
-- (bool)markNumber: (NSInteger)number {
+- (BOOL)markNumber: (NSInteger)number {
     BoardNumber *position = [numbers objectForKey:@(number)];
-    if (position == NULL) return false;
+    if (position == NULL) return NO;
 
     // Assuming numbers are unique, so not marking them as 'visited'
     sumUnmarked -= number;
     rows[position.row] = @([rows[position.row] integerValue] - 1);
     cols[position.col] = @([cols[position.col] integerValue] - 1);
     didWin = ([rows[position.row] integerValue] == 0 || [cols[position.col] integerValue] == 0);
-    return true;
+    return YES;
 }
 
--(bool) isWinner {
+-(BOOL) isWinner {
     return didWin;
 }
 

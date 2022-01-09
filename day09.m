@@ -26,7 +26,7 @@ int getValue(int cave[100][100], int i, int j, NSInteger cave_height, NSInteger 
     return cave[i][j];
 }
 
-bool isLowPoint(long h, int cave[100][100], int i, int j, NSInteger cave_height, NSInteger cave_width) {
+BOOL isLowPoint(long h, int cave[100][100], int i, int j, NSInteger cave_height, NSInteger cave_width) {
     int a = getValue(cave, i, j-1, cave_height, cave_width);
     int b = getValue(cave, i-1, j, cave_height, cave_width);
     int c = getValue(cave, i, j+1, cave_height, cave_width);
@@ -34,14 +34,14 @@ bool isLowPoint(long h, int cave[100][100], int i, int j, NSInteger cave_height,
     return (h < a && h < b && h < c && h < d);
 }
 
-void addValueIfValid(int cave[100][100], int val, int i, int j, NSInteger cave_height, NSInteger cave_width, NSMutableArray *queue, bool visited[100][100]) {
+void addValueIfValid(int cave[100][100], int val, int i, int j, NSInteger cave_height, NSInteger cave_width, NSMutableArray *queue, BOOL visited[100][100]) {
     int a = getValue(cave, i, j, cave_height, cave_width);
     if (a < 9 && val < a && !visited[i][j]) [queue addObject:[[Position alloc] initWithRowCol:i andCol:j]];
 }
 
 long findBasin(int cave[100][100], int i, int j, NSInteger cave_height, NSInteger cave_width) {
     long size_basin = 0;
-    bool visited[100][100] = {0};
+    BOOL visited[100][100] = {0};
 
     NSMutableArray *queue = [[NSMutableArray alloc] init];
     [queue addObject:[[Position alloc] initWithRowCol:i andCol:j]];
@@ -50,7 +50,7 @@ long findBasin(int cave[100][100], int i, int j, NSInteger cave_height, NSIntege
         [queue removeObjectAtIndex:0];
         NSCAssert(pos.row >= 0 && pos.row < 100 && pos.col >= 0 && pos.col < 100, @"out of bounds");
         if (visited[pos.row][pos.col]) continue;
-        visited[pos.row][pos.col] = true;
+        visited[pos.row][pos.col] = YES;
         size_basin++;
 
         addValueIfValid(cave, cave[pos.row][pos.col], pos.row, pos.col-1, cave_height, cave_width, queue, visited);

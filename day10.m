@@ -8,7 +8,7 @@ int main(int argc, const char * argv[]) {
     NSMutableArray *scores = [[NSMutableArray alloc] init];
     for (NSString *line in lines) {
         NSMutableArray *st = [[NSMutableArray alloc] init];
-        bool stop_processing = false;
+        BOOL stop_processing = NO;
         for (long i = 0; i < line.length && !stop_processing; i++) {
             char c = [line characterAtIndex:i], prev_c = 'x';
             switch (c) {
@@ -27,7 +27,7 @@ int main(int argc, const char * argv[]) {
                         continue;
 
                     // Wrong closing bracket
-                    stop_processing = true;
+                    stop_processing = YES;
                     if (c == ')') sum_errors += 3;
                     if (c == ']') sum_errors += 57;
                     if (c == '}') sum_errors += 1197;

@@ -11,7 +11,7 @@ int getNodeId(NSDictionary *node_to_id, id key) {
     return (int) [[node_to_id objectForKey:key] integerValue];
 }
 
-long countAllPaths(int node_id, int adj_matrix[MAX_SIZE][MAX_SIZE], int visited[MAX_SIZE], NSDictionary *node_to_id, bool small_cave[MAX_SIZE], NumberMaxVisitType max_visit, bool did_visit_twice) {
+long countAllPaths(int node_id, int adj_matrix[MAX_SIZE][MAX_SIZE], int visited[MAX_SIZE], NSDictionary *node_to_id, BOOL small_cave[MAX_SIZE], NumberMaxVisitType max_visit, BOOL did_visit_twice) {
     if (node_id == getNodeId(node_to_id, @"end")) {
         return 1;
     }
@@ -29,9 +29,9 @@ long countAllPaths(int node_id, int adj_matrix[MAX_SIZE][MAX_SIZE], int visited[
         }
 
         visited[i]++;
-        if (small_cave[i] && visited[i] == 2) did_visit_twice = true;
+        if (small_cave[i] && visited[i] == 2) did_visit_twice = YES;
         count += countAllPaths(i, adj_matrix, visited, node_to_id, small_cave, max_visit, did_visit_twice);
-        if (small_cave[i] && visited[i] == 2) did_visit_twice = false;
+        if (small_cave[i] && visited[i] == 2) did_visit_twice = NO;
         visited[i]--;
     }
     return count;
@@ -44,7 +44,7 @@ int main(int argc, const char * argv[]) {
     int node_id = 0;
     NSMutableDictionary *node_to_id = [NSMutableDictionary dictionary];
     int adj_matrix[MAX_SIZE][MAX_SIZE] = {0};
-    bool small_cave[MAX_SIZE] = {0};
+    BOOL small_cave[MAX_SIZE] = {0};
     for (NSString *line in lines) {
         NSArray *nodes = [line componentsSeparatedByCharactersInSet:[NSMutableCharacterSet characterSetWithCharactersInString:@"-"]];
 
@@ -66,10 +66,10 @@ int main(int argc, const char * argv[]) {
 
     int visited[MAX_SIZE] = {0};
     visited[getNodeId(node_to_id, @"start")]++;
-    long all_paths_max_1 = countAllPaths(getNodeId(node_to_id, @"start"), adj_matrix, visited, node_to_id, small_cave, kVisitMaxOne, false);
+    long all_paths_max_1 = countAllPaths(getNodeId(node_to_id, @"start"), adj_matrix, visited, node_to_id, small_cave, kVisitMaxOne, NO);
     NSLog(@"(1) answer: %ld", all_paths_max_1);
 
-    long all_paths_max_2 = countAllPaths(getNodeId(node_to_id, @"start"), adj_matrix, visited, node_to_id, small_cave, kVisitMaxTwice, false);
+    long all_paths_max_2 = countAllPaths(getNodeId(node_to_id, @"start"), adj_matrix, visited, node_to_id, small_cave, kVisitMaxTwice, NO);
     NSLog(@"(2) answer: %ld", all_paths_max_2);
     return 0;
 }

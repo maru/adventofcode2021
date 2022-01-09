@@ -43,18 +43,18 @@ long getNumber(NSArray *signals, char res[128]) {
     return number;
 }
 
-long findPermutation(NSArray *signals, char c, char res[128], bool used[128]) {
+long findPermutation(NSArray *signals, char c, char res[128], BOOL used[128]) {
     if (c > 'g') {
         return getNumber(signals, res);
     }
 
     for (char d = 'a'; d <= 'g'; d++) {
         if (used[d]) continue;
-        used[d] = true;
+        used[d] = YES;
         res[c] = d;
         long number = findPermutation(signals, c + 1, res, used);
         if (number != -1) return number;
-        used[d] = false;
+        used[d] = NO;
     }
     return -1;
 }
@@ -73,7 +73,7 @@ int main(int argc, const char * argv[]) {
         }
 
         char res[128] = {0};
-        bool used[128] = {0};
+        BOOL used[128] = {0};
         // This solution is not the most efficient, but given the input size and the number of signals, it is fast enough :)
         long number = findPermutation(signals, 'a', res, used);
         NSCAssert(number != -1, @"not found");

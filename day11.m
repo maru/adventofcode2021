@@ -29,7 +29,7 @@ const int GRID_SIZE = 10;
 
 -(void)push:(ObjectType)v;
 -(ObjectType)pop;
--(bool)is_empty;
+-(BOOL)is_empty;
 @end
 
 @implementation Queue
@@ -47,7 +47,7 @@ const int GRID_SIZE = 10;
     [queue removeObjectAtIndex:0];
     return o;
 }
--(bool)is_empty {
+-(BOOL)is_empty {
     return [queue count] == 0;
 }
 
@@ -95,10 +95,10 @@ long doStep(int octopus[GRID_SIZE][GRID_SIZE]) {
 long doAllOctopusFlash(int octopus[GRID_SIZE][GRID_SIZE]) {
     for (int i = 0; i < GRID_SIZE; i++) {
         for (int j = 0; j < GRID_SIZE; j++) {
-            if (octopus[i][j] != 0) return false;
+            if (octopus[i][j] != 0) return NO;
         }
     }
-    return true;
+    return YES;
 }
 
 

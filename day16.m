@@ -21,7 +21,7 @@ unsigned char hex(unsigned char c) {
 - (unsigned int)get:(size_t)bits;
 - (size_t)bits_left;
 - (size_t)bits_read;
-- (bool)is_end;
+- (BOOL)is_end;
 @end
 
 @implementation PacketReader
@@ -62,7 +62,7 @@ unsigned char hex(unsigned char c) {
     return offset;
 }
 
-- (bool)is_end {
+- (BOOL)is_end {
     return offset == len*8;
 }
 
