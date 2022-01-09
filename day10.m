@@ -5,9 +5,9 @@ int main(int argc, const char * argv[]) {
     NSArray<NSString *> *lines = parseLines(input);
 
     long sum_errors = 0;
-    NSMutableArray *scores = [[NSMutableArray alloc] init];
+    NSMutableArray *scores = [NSMutableArray array];
     for (NSString *line in lines) {
-        NSMutableArray *st = [[NSMutableArray alloc] init];
+        NSMutableArray *st = [NSMutableArray array];
         BOOL stop_processing = NO;
         for (long i = 0; i < line.length && !stop_processing; i++) {
             char c = [line characterAtIndex:i], prev_c = 'x';

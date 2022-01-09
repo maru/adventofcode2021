@@ -51,8 +51,8 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
     numbers = [NSMutableDictionary dictionary];
     sumUnmarked = 0;
     didWin = NO;
-    rows = [[NSMutableArray alloc] init];
-    cols = [[NSMutableArray alloc] init];
+    rows = [NSMutableArray array];
+    cols = [NSMutableArray array];
     boardSize = MAX_BOARD_SIZE;
     for (int i = 0; i < boardSize; i++) {
         [rows addObject:@(boardSize)];
@@ -94,7 +94,7 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
 
 NSInteger playBingo(NSArray<NSString *> *lines, WinPositionType winPosition) {
     NSInteger num_lines = [lines count];
-    NSMutableArray *boards = [[NSMutableArray alloc] init];
+    NSMutableArray *boards = [NSMutableArray array];
     // parseLines skips blank lines, so start from lines[1]
     for (int first = 1; first < num_lines; first += MAX_BOARD_SIZE) {
         Board *board = [[Board alloc] init];

@@ -43,7 +43,7 @@ long findBasin(int cave[100][100], int i, int j, NSInteger cave_height, NSIntege
     long size_basin = 0;
     BOOL visited[100][100] = {0};
 
-    NSMutableArray *queue = [[NSMutableArray alloc] init];
+    NSMutableArray *queue = [NSMutableArray array];
     [queue addObject:[[Position alloc] initWithRowCol:i andCol:j]];
     while ([queue count] > 0) {
         Position *pos = [queue objectAtIndex:0];
@@ -75,7 +75,7 @@ int main(int argc, const char * argv[]) {
     }
 
     long sum_risk = 0;
-    NSMutableArray *basins = [[NSMutableArray alloc] init];
+    NSMutableArray *basins = [NSMutableArray array];
     for (int i = 0; i < cave_height; i++) {
         for (int j = 0; j < cave_width; j++) {
             long h = cave[i][j];

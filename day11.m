@@ -34,7 +34,7 @@ const int GRID_SIZE = 10;
 
 @implementation Queue
 -(instancetype)init {
-    queue = [[NSMutableArray alloc] init];
+    queue = [NSMutableArray array];
     return self;
 }
 -(void)push:(id)anObject {

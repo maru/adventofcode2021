@@ -45,7 +45,7 @@ int main(int argc, const char * argv[]) {
     NSScanner *scanner = [[NSScanner alloc] initWithString:lines[0]];
     [scanner setCharactersToBeSkipped:skipChars];
 
-    NSMutableArray *nums = [[NSMutableArray alloc] init];
+    NSMutableArray *nums = [NSMutableArray array];
     NSInteger pos;
     while ([scanner scanInteger:&pos]) {
         [nums addObject:@(pos)];
