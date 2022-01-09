@@ -97,7 +97,7 @@ NSInteger playBingo(NSArray<NSString *> *lines, WinPositionType winPosition) {
     NSMutableArray *boards = [NSMutableArray array];
     // parseLines skips blank lines, so start from lines[1]
     for (int first = 1; first < num_lines; first += MAX_BOARD_SIZE) {
-        Board *board = [[Board alloc] init];
+        Board *board = [Board new];
         NSInteger number;
         for (int i = first; i < first + MAX_BOARD_SIZE; i++) {
             int row = i - first;

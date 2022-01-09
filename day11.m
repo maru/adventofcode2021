@@ -68,7 +68,7 @@ void print_grid(int octopus[GRID_SIZE][GRID_SIZE]) {
 }
 
 long doStep(int octopus[GRID_SIZE][GRID_SIZE]) {
-    Queue *queue = [[Queue alloc] init];
+    Queue *queue = [Queue new];
     for (int i = 0; i < GRID_SIZE; i++) {
         for (int j = 0; j < GRID_SIZE; j++) {
             octopus[i][j] = (octopus[i][j] + 1) % 10;
