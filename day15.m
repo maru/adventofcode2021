@@ -3,8 +3,8 @@
 const NSUInteger MAX_SIZE = 500;
 
 @interface Position : NSObject {
-    int row, col;
-    NSUInteger risk;
+    int _row, _col;
+    NSUInteger _risk;
 }
 @property(nonatomic, readwrite) NSUInteger risk;
 @property(nonatomic, readwrite) int row;
@@ -14,16 +14,13 @@ const NSUInteger MAX_SIZE = 500;
 @end
 
 @implementation Position
-@synthesize risk;
-@synthesize row;
-@synthesize col;
 
 - (instancetype)initWithRow:(int)r col:(int)c risk:(NSUInteger)rk {
     self = [super init];
     if (self) {
-        row = r;
-        col = c;
-        risk = rk;
+        _row = r;
+        _col = c;
+        _risk = rk;
     }
     return self;
 }

@@ -8,7 +8,7 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
 };
 
 @interface BoardNumber : NSObject {
-    int row, col;
+    int _row, _col;
 }
 @property(nonatomic, readwrite) int row;
 @property(nonatomic, readwrite) int col;
@@ -17,14 +17,12 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
 @end
 
 @implementation BoardNumber
-@synthesize row;
-@synthesize col;
 
 - (instancetype)initWithRow:(int)r col:(int)c {
     self = [super init];
     if (self) {
-        row = r;
-        col = c;
+        _row = r;
+        _col = c;
     }
     return self;
 }
@@ -33,29 +31,29 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
 
 @interface Board : NSObject {
     NSMutableDictionary *numbers;
-    NSInteger sumUnmarked;
+    NSInteger _sumUnmarked;
     NSMutableArray *rows, *cols;
-    BOOL didWin;
+    BOOL _winner;
     int boardSize;
 }
 @property(nonatomic, readwrite) NSInteger sumUnmarked;
+@property(nonatomic, readonly, getter=isWinner) BOOL winner;
 
-- (void)addNumber:(NSInteger)number withPosition:(BoardNumber*)position;
-- (BOOL)markNumber: (NSInteger)number;
+- (void)addNumber:(NSInteger)number position:(BoardNumber*)position;
+- (BOOL)markNumber:(NSInteger)number;
 - (BOOL)isWinner;
 - (void)print;
 
 @end
 
 @implementation Board
-@synthesize sumUnmarked;
 
 - (instancetype)init {
     self = [super init];
     if (self) {
         numbers = [NSMutableDictionary dictionary];
-        sumUnmarked = 0;
-        didWin = NO;
+        _sumUnmarked = 0;
+        _winner = NO;
         rows = [NSMutableArray array];
         cols = [NSMutableArray array];
         boardSize = MAX_BOARD_SIZE;
@@ -74,7 +72,7 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
     }
 }
 
-- (void)addNumber:(NSInteger)number withPosition:(BoardNumber*)position {
+- (void)addNumber:(NSInteger)number position:(BoardNumber*)position {
     [numbers setObject:position forKey:@(number)];
 }
 
@@ -83,15 +81,11 @@ typedef NS_ENUM(NSUInteger, WinPositionType) {
     if (position == NULL) return NO;
 
     // Assuming numbers are unique, so not marking them as 'visited'
-    sumUnmarked -= number;
+    _sumUnmarked -= number;
     rows[position.row] = @([rows[position.row] integerValue] - 1);
     cols[position.col] = @([cols[position.col] integerValue] - 1);
-    didWin = ([rows[position.row] integerValue] == 0 || [cols[position.col] integerValue] == 0);
+    _winner = ([rows[position.row] integerValue] == 0 || [cols[position.col] integerValue] == 0);
     return YES;
-}
-
-- (BOOL)isWinner {
-    return didWin;
 }
 
 @end
@@ -112,7 +106,7 @@ NSInteger playBingo(NSArray<NSString *> *lines, WinPositionType winPosition) {
             while ([scanner scanInteger:&number]) {
                 board.sumUnmarked += number;
                 BoardNumber *pos = [[BoardNumber alloc] initWithRow:row col:col++];
-                [board addNumber:number withPosition:pos];
+                [board addNumber:number position:pos];
             }
         }
         [boards addObject:board];

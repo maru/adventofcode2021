@@ -3,7 +3,7 @@
 const int GRID_SIZE = 10;
 
 @interface Position : NSObject {
-    int row, col;
+    int _row, _col;
 }
 @property(nonatomic, readwrite) int row;
 @property(nonatomic, readwrite) int col;
@@ -12,14 +12,12 @@ const int GRID_SIZE = 10;
 @end
 
 @implementation Position
-@synthesize row;
-@synthesize col;
 
 - (instancetype)initWithRow:(int)r col:(int)c {
     self = [super init];
     if (self) {
-        row = r;
-        col = c;
+        _row = r;
+        _col = c;
     }
     return self;
 }
